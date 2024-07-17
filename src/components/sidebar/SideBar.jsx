@@ -1,14 +1,25 @@
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Divider } from "@mui/material";
 import { SlHome } from "react-icons/sl";
 import { MdSubscriptions, MdHistory, MdLibraryAddCheck } from "react-icons/md";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { PiSmileySad } from "react-icons/pi";
 import { AiOutlineLogout } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../app/features/authSlise";
 
 const SideBar = ({ sideBarMenu }) => {
+const dispatch = useDispatch()
+
+const logOutHandler = () =>{
+  dispatch(logOut())
+  
+}
+
+
+  
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const isMobileScreen = window.innerWidth <= 767; // Adjust based on your media query needs
 
@@ -20,8 +31,9 @@ const SideBar = ({ sideBarMenu }) => {
     { icon: <MdLibraryAddCheck size={24} />, label: "Library" },
     { icon: <PiSmileySad size={24} />, label: "I know" },
     {
-      icon: <AiOutlineLogout size={24} />,
+      icon: <AiOutlineLogout onClick={logOutHandler} size={24} />,
       label: "Log Out",
+      onClick: logOutHandler,
       showDivider: true,
     },
   ];
@@ -42,7 +54,7 @@ const SideBar = ({ sideBarMenu }) => {
               {item.showDivider && index === menuItems.length - 1 && (
                 <Divider sx={{ borderColor: "white", my: 1 }} />
               )}
-              <li
+              <li 
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -56,6 +68,7 @@ const SideBar = ({ sideBarMenu }) => {
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                onClick={item.onClick}
               >
                 {item.icon}
                 {!isMobileScreen && (

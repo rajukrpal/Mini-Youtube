@@ -2,23 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
 }
-
 .body{
     background-color: rgba(7, 7, 7, 0.849);
     background-attachment: fixed;
     color: azure;
 }
 
-
-
-
+/* Home Screen */
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -26,7 +21,14 @@
     overflow-x: scroll;
   }
 
+.yt-title{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
+/* Login Screen */
 
 
 

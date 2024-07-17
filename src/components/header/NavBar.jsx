@@ -6,9 +6,14 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { AiOutlineMenu } from "react-icons/ai";
 
+
 import { Box, useMediaQuery } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const NavBar = ({handalSideBarMenu}) => {
+  const {user} = useSelector((state,action)=>state.Auth)
+  const image = user?.photoURL ;
+  // console.log("image",user)
   const isMobileScreen = useMediaQuery("(max-width:767px)");
   return (
     <div className="border border-black">
@@ -37,8 +42,8 @@ const NavBar = ({handalSideBarMenu}) => {
             <Stack direction="row" spacing={1}>
               <Avatar
                 sx={{ width: 30, height: 30 }}
-                alt="Raju"
-                src="/static/images/avatar/1.jpg"
+                alt={user?.displayName}
+                src={image}
               />
             </Stack>
           ) : (
@@ -52,8 +57,8 @@ const NavBar = ({handalSideBarMenu}) => {
               <Stack direction="row" spacing={1}>
                 <Avatar
                   sx={{ width: 30, height: 30 }}
-                  alt="Raju"
-                  src="/static/images/avatar/1.jpg"
+                  alt={user?.displayName}
+                  src={image }
                 />
               </Stack>
             </Box>
