@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import testingSlise from '../features/testing'
 import authSlise from '../features/authSlise'
+import videoSlise from '../features/videoSlise';
+import iconSlise from '../features/iconSlise';
 
 const store = configureStore({
     reducer: {
       Testing: testingSlise,
       Auth:authSlise,
+      Video:videoSlise,
+      Icon:iconSlise,
     }
   })
 

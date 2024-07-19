@@ -52,55 +52,55 @@ import { auth } from '../../firebase/firebase';
 
 
 
-const authSlise = createSlice({
-    name: 'auth',
-    initialState: {
-        isLoading:false,
-        accessToken: localStorage.getItem("accessToken") ? localStorage.getItem("accessToken") : null,
-        user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
-        error: null
+  const authSlise = createSlice({
+      name: 'auth',
+      initialState: {
+          isLoading:false,
+          accessToken: localStorage.getItem("accessToken") ? localStorage.getItem("accessToken") : null,
+          user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
+          error: null
+        },
+
+      reducers:{
+    
+      
       },
 
-    reducers:{
-   
-    
-    },
-
-    extraReducers:(builder)=>{
-        builder
-        .addCase(login.pending , (state,action)=>{
-             state.isLoading = true;
-             state.error = null;
-        })
-      
-        .addCase(login.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.accessToken = action.payload.accessToken; 
-            state.user = action.payload.user;
-        })
+      extraReducers:(builder)=>{
+          builder
+          .addCase(login.pending , (state,action)=>{
+              state.isLoading = true;
+              state.error = null;
+          })
         
-        .addCase(login.rejected , (state,action)=>{
-            state.isLoading = false;
-            state.error = action.payload;
-        })
-        .addCase(logOut.pending , (state,action)=>{
-             state.isLoading = true;
-             state.error = null;
-        })
-      
-        .addCase(logOut.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.accessToken = null; 
-            state.user = null;
-        })
+          .addCase(login.fulfilled, (state, action) => {
+              state.isLoading = false;
+              state.accessToken = action.payload.accessToken; 
+              state.user = action.payload.user;
+          })
+          
+          .addCase(login.rejected , (state,action)=>{
+              state.isLoading = false;
+              state.error = action.payload;
+          })
+          .addCase(logOut.pending , (state,action)=>{
+              state.isLoading = true;
+              state.error = null;
+          })
         
-        .addCase(logOut.rejected , (state,action)=>{
-            state.isLoading = false;
-            state.error = action.payload;
-        })
-    }
-    
-  })
+          .addCase(logOut.fulfilled, (state, action) => {
+              state.isLoading = false;
+              state.accessToken = null; 
+              state.user = null;
+          })
+          
+          .addCase(logOut.rejected , (state,action)=>{
+              state.isLoading = false;
+              state.error = action.payload;
+          })
+      }
+      
+    })
   
   
   export default authSlise.reducer

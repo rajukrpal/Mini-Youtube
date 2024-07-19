@@ -5,8 +5,10 @@ const  request = axios.create({
     baseURL:"https://youtube.googleapis.com/youtube/v3/",
     params:{
         // eslint-disable-next-line no-undef
-        Key: process.env.VITE_APPWRITE_KEY
+        Key: import.meta.env.VITE_APPWRITE_KEY
     }
 })
+
+console.log(import.meta.env.VITE_APPWRITE_KEY)
 
 export default request ;
